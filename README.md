@@ -25,8 +25,29 @@ Sviluppare:
 - il metodo int Rimanenti( int mattoni ) che torna il numero di mattoni rimasti dopo la costruzione
 
 >## Codice
+```c#
 
-<img width="800" height="600" src="https://user-images.githubusercontent.com/127590023/236447523-1ed4fe5e-824a-4b98-82a7-056bfe0dfd1f.png" />
+namespace Piramide{
+public class Piramide{
+    public static int Piani(int mattoni) {
+        int piani = 0;
+        while (mattoni >= (2 * piani + 1) * (2 * piani)) {
+            piani++;
+            mattoni -= (2 * piani - 1) * (2 * piani - 1);
+        }
+        return piani;
+    }
+    public static int Rimanenti(int mattoni) {
+        int piani = Piani(mattoni);
+        int mattoniUtilizzati = 0;
+        for (int i = 1; i <= piani; i++) {
+            mattoniUtilizzati += (2 * i - 1) * (2 * i - 1);
+        }
+        return mattoni - mattoniUtilizzati;
+        }
+    }
+}
+```
 
 >## Spiegazione codice
 Questo codice definisce una classe statica chiamata "Piramide" con due metodi statici all'interno: "Piani" e "Rimanenti".
